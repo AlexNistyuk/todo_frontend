@@ -1,0 +1,34 @@
+.div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding-left: 20px;
+    height: 40px;
+    width: 220px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(128,128,128,.5);
+}
+
+.columnHeaderText{
+    font-size: 15px;
+    /*font-family: Inter, serif;*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.circle {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgb(150,145,145);
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;;
+}

@@ -1,0 +1,7 @@
+.loading{
+    margin-top: 60px;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

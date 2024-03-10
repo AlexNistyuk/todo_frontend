@@ -1,0 +1,60 @@
+.div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 20px;
+    height: 120px;
+    width: 220px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(128,128,128,.5);
+}
+
+.verticalLine{
+    display: flex;
+    width: 3px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.content{
+    margin-top: 10px;
+    width: calc(100% - 3px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.name{
+    display: flex;
+    pointer-events: none;
+    align-items: flex-start;
+    font-size: 14px;
+    width: 100%;
+}
+
+.description{
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    width: 95%;
+    resize: none;
+    border: none;
+    overflow-y: hidden;
+    pointer-events: none;
+    height: 40px;
+    color: darkgrey;
+    word-break: break-all;
+}
+
+.estimatedDate{
+    display: flex;
+    align-items: flex-start;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
