@@ -1,15 +1,16 @@
 .div{
     display: flex;
     flex-direction: row;
-    margin: 0 50px 30px 50px;
+    margin-left: 100px;
+    margin-right: 100px;
     width: 100%;
     gap: 60px;
 }
 
 .pagesSelector{
     font-size: 15px;
-    margin-left: 50px;
-    margin-top: 25px;
+    margin-left: 100px;
+    margin-top: 50px;
     width: 220px;
     min-width: 220px;
 }

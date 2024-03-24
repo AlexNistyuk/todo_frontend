@@ -2,18 +2,17 @@ import React, {useEffect, useState} from "react";
 import classes from "./Dashboard.module.css";
 import Column from "./Column/Column";
 import {DragDropContext} from "@hello-pangea/dnd";
-import {toast} from "react-toastify";
-import SuccessMessage from "../Toast/SuccessMessage/SuccessMessage";
-import ErrorMessage from "../Toast/ErrorMessage/ErrorMessage";
-import Loading from "../Loading/Loading";
+import Loading from "./Loading/Loading";
 import DashboardService from "../../../../../services/dashboard";
 import {useSearchParams} from "react-router-dom";
 import TaskService from "../../../../../services/tasks";
 import Selector from "./Selector/Selector";
+import ToastService from "../../../../../services/toasts";
 
 
 function Dashboard(props){
     const [searchParams, setSearchParams] = useSearchParams();
+    const [pageId, setPadeId] = useState(searchParams.get("pageId"))
     const [columns, setColumns] = useState([]);
     const [isDashboardLoading, setDashboardLoading] = useState(true);
     const [selectOptions, setSelectOptions] = useState(null);
@@ -23,22 +22,31 @@ function Dashboard(props){
         setOptions: setSelectOptions,
         setDefaultValue: setSelectDefaultValue
     }
-    const pageId = searchParams.get('pageId');
 
     useEffect( () => {
-        new DashboardService().getByPageId(pageId, selector)
-            .then(function (data) {
-                setColumns(data.dashboard);
+        setTimeout(async () => {
+            try{
+                const data = await new DashboardService().getByPageId(pageId, selector)
                 setDashboardLoading(false);
-                setSearchParams({ pageId: data.pageId });
-            })
-    }, [searchParams])
+
+                if (data){
+                    setColumns(data.dashboard);
+                    setSearchParams({ pageId: data.pageId });
+                    setPadeId(data.pageId)
+                }
+            } catch {
+                setDashboardLoading(true);
+            }
+        }, 500)
+
+    }, [pageId])
 
     return (
         isDashboardLoading ? <Loading/> :
+        !selectOptions? null :
         <div className="dashboard-data">
             <div className={classes.pagesSelector}>
-                <Selector setParam={setSearchParams} options={selectOptions} defaultValue={selectDefaultValue}/>
+                <Selector setParam={setPadeId} options={selectOptions} defaultValue={selectDefaultValue}/>
             </div>
             <div className="pages-data">
                 <DragDropContext onDragEnd={result => onDragEnd(result, props.state, columns, setColumns)}>
@@ -60,21 +68,15 @@ export default Dashboard;
 
 const onDragEnd = (result, state, columns, setColumns) => {
         const { destination, source } = result;
+        const toastService = new ToastService(state)
+
         if (!destination){
-            toast.warning(<ErrorMessage
-                state={state}
-                header="Cannot change status"
-                reason="There is no destination column"
-            />)
+            toastService.warning("Cannot change status", "There is no destination column")
 
             return;
         }
         if (destination.droppableId === source.droppableId){
-            toast.warning(<ErrorMessage
-                state={state}
-                header="Cannot change status"
-                reason="The same column"
-            />)
+            toastService.warning("Cannot change status", "The same column")
 
             return;
         }
@@ -104,19 +106,10 @@ const onDragEnd = (result, state, columns, setColumns) => {
         new TaskService().updateStatus(
             removed.id, destinationColumn.id
         ).then(() => {
-                toast.success(<SuccessMessage
-                    state={state}
-                    header={removed.name}
-                    event={destinationColumn.name}
-                    color={destinationColumn.color}
-                />)
+            toastService.success(removed.name, destinationColumn.name, destinationColumn.color)
         }).catch(error => {
             setColumns(columns)
 
-            toast.error(<ErrorMessage
-                state={state}
-                header="Cannot change status"
-                reason={error.message}
-            />)
+            toastService.error("Cannot change status", error.message)
         })
 }

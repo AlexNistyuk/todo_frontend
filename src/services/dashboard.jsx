@@ -4,15 +4,6 @@ import StatusService from "./statuses";
 import PageService from "./pages";
 
 
-// [
-//     {id: 1, color: 'rgb(3,102,251)', name: 'Todo', tasks: get_tasks(1)},
-//     {id: 2, color: 'rgb(255,230,1)', name: 'In progress', tasks: get_tasks(2)},
-//     {id: 3, color: 'rgb(9,251,62)', name: 'In review', tasks: get_tasks(3)},
-//     {id: 4, color: 'rgb(0,255,255)', name: 'Done', tasks: get_tasks(4)},
-// ]
-
-
-
 export default class DashboardService {
 
     constructor() {
@@ -24,6 +15,10 @@ export default class DashboardService {
     async getByPageId(pageId, selector){
         if (!selector.options){
             const userPages = await this.pageService.getAllUserPage()
+            if (userPages.length === 0){
+                return null;
+            }
+
             let newOptions = []
 
             if (!pageId){

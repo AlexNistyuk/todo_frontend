@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import Pages from "./Pages/Pages";
 import Tasks from "./Tasks/Tasks";
+import Page from "./Page/Page";
 
 
 function Content(props){
@@ -11,6 +12,8 @@ function Content(props){
         <div className={classes.content}>
             <Routes>
                 <Route path="/dashboard" element={<Dashboard state={props.state}/>}/>
+                <Route path="/pages" element={<Pages state={props.state}/>}/>
+                <Route path="/pages/:pageId" element={<Page state={props.state}/>}/>
                 <Route path="/pages" element={<Pages state={props.state}/>}/>
                 <Route path="/tasks" element={<Tasks state={props.state}/>}/>
             </Routes>

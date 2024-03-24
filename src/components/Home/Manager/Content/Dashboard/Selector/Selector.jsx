@@ -4,7 +4,7 @@ import Select from "react-select";
 
 function Selector(props){
     const handleOnChange = (event) => {
-        props.setParam({pageId: event.value})
+        props.setParam(event.value)
     }
 
     return (

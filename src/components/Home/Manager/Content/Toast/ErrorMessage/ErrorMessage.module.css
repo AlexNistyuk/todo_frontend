@@ -4,15 +4,6 @@
     gap: 10px;
 }
 
-.header{
-    font-size: 15px;
-}
-
 .reason{
-    display: flex;
-    gap: 10px;
-    border-radius: 5px;
-    min-height: 20px;
-    font-size: 13px;
-    align-items: center;
+    font-size: 17px;
 }

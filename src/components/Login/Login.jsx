@@ -1,28 +1,36 @@
 import React from "react";
 import styles from "./Login.module.css";
-import {Button, Paper, TextField, Typography} from "@mui/material";
+import {Button, Paper, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAuth} from "../../redux/slices/auth";
-import {Navigate} from "react-router-dom";
+import {fetchSignIn} from "../../redux/slices/auth";
+import {Link, Navigate} from "react-router-dom";
+import PasswordInput from "../../common/components/PasswordInput/PasswordInput";
+import UsernameInput from "../../common/components/UsernameInput/UsernameInput";
+import {toast} from "react-toastify";
+import ErrorMessage from "../Home/Manager/Content/Toast/ErrorMessage/ErrorMessage";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login(props){
     const dispatch = useDispatch()
-    const {register, handleSubmit, setError, formState: {errors, isValid}} = useForm({
+    const {register, handleSubmit, setError, formState: {errors}} = useForm({
         mode: "onChange"
     });
     const isLoading = useSelector(state => state.auth.status) === "loading"
+    const buttonDisabled = Boolean(errors.username?.critical) || Boolean(errors.password?.critical)
 
     const onSubmit = async (values) => {
-        const data = await dispatch(fetchAuth(values))
+        const payload = await dispatch(fetchSignIn(values))
 
-        if (!data.payload){
-            return alert("Error while authorizing")
-        }
-
-        if ("tokens" in data.payload){
-            window.localStorage.setItem("access_token", data.payload.tokens.access_token)
-            window.localStorage.setItem("refresh_token", data.payload.tokens.refresh_token)
+        if (payload?.error){
+            toast.error(
+                <ErrorMessage
+                    state={props.state}
+                    header="Log in"
+                    reason={payload.error.message}
+                />
+            )
         }
     }
 
@@ -32,29 +40,33 @@ function Login(props){
 
     return (
         <Paper classes={{root: styles.root}}>
-            <Typography classes={{root: styles.title}} variant="h5">
-                Вход в аккаунт
-            </Typography>
+            <div className={styles.header}>
+                <Typography classes={{root: styles.title}} variant="h5">
+                    Sign In
+                </Typography>
+                <Link to="/register">
+                    Sign Up
+                </Link>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <TextField
-                    className={styles.field}
+                <UsernameInput
                     label="Username"
-                    error={Boolean(errors.username?.message)}
-                    helperText={errors.username?.message}
-                    {...register('username', {required: 'Enter username'})}
-                    fullWidth
+                    error={errors.username}
+                    registerName="username"
+                    style={styles.field}
+                    register={register}
+                    setError={setError}
                 />
-                <TextField
-                    className={styles.field}
+                <PasswordInput
                     label="Password"
-                    fullWidth
-                    error={Boolean(errors.password?.message)}
-                    helperText={errors.password?.message}
-                    {...register('password', {required: 'Enter password'})}
-                    type="password"
+                    style={styles.field}
+                    error={errors.password}
+                    register={register}
+                    registerName="password"
+                    visibility={true}
                 />
-                <Button disabled={isLoading} type="submit" size="large" variant="contained" fullWidth>
-                    Войти
+                <Button disabled={isLoading || buttonDisabled} type="submit" size="large" variant="contained" fullWidth>
+                    Submit
                 </Button>
             </form>
         </Paper>

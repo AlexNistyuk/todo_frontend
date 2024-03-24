@@ -1,0 +1,53 @@
+.task{
+    height: 180px;
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.verticalLine{
+    display: flex;
+    width: 3px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+.content{
+    margin-top: 10px;
+    margin-bottom: 5%;
+    width: calc(100% - 3px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name{
+    display: flex;
+    pointer-events: none;
+    align-items: flex-start;
+    font-size: 17px;
+    width: 100%;
+    color: black;
+}
+
+.description{
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    width: 95%;
+    resize: none;
+    border: none;
+    overflow-y: hidden;
+    pointer-events: none;
+    height: 40px;
+    color: grey;
+    word-break: break-all;
+    padding-bottom: 30px;
+}
+
+.field{
+    display: flex;
+    font-weight: bold;
+    font-size: 13px;
+}

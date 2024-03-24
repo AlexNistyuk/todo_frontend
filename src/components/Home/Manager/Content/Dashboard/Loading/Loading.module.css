@@ -1,0 +1,31 @@
+.pagesSelector{
+    font-size: 15px;
+    margin-left: 100px;
+    margin-top: 50px;
+    width: 220px;
+}
+
+.columnContainer{
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    margin-left: 100px;
+    width: 100%;
+    gap: 60px;
+}
+
+.column{
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.taskList{
+    display: flex;
+    flex-direction: column;
+    /*gap: 30px;*/
+}
+
+.task{
+}

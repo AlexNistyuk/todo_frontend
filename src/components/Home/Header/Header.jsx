@@ -1,13 +1,14 @@
 import React from "react";
 import "./Header.css";
 import Logo from "./Logo/Logo";
-import Username from "./Username/Username";
+import DropdownMenu from "./DropdownMenu/DropdownMenu";
+
 
 function Header(){
     return (
         <div className="header">
             <Logo/>
-            <Username/>
+            <DropdownMenu/>
         </div>
     )
 }

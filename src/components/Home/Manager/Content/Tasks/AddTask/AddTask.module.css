@@ -1,0 +1,10 @@
+.addTaskButton{
+    height: 40px;
+    width: 150px;
+    background-color: white !important;
+    box-shadow: 0 5px 10px rgba(128,128,128,.5);
+}
+
+.addTaskButton:hover{
+    background-color: rgba(25, 118, 210, 0.02) !important;
+}

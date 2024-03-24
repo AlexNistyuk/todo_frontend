@@ -19,11 +19,14 @@ function Task(props){
                         <div className={classes.content}>
                             <NavLink to={taskPath}>
                                 <div className={classes.name}>{
-                                    props.state.truncate(props.name, props.state.maxTaskName)}
+                                    props.state.truncate(props.name, props.state.task.maxNameLength)}
                                 </div>
                             </NavLink>
                             <textarea className={classes.description}>{
-                                props.state.truncate(props.description, props.state.maxTaskDescription)}
+                                props.description ?
+                                    props.state.truncate(props.description, props.state.task.maxShowDescriptionLength)
+                                    : null
+                            }
                             </textarea>
                             <div className={classes.estimatedDate}>
                                 {estimatedDate}
