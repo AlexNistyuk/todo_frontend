@@ -1,0 +1,29 @@
+.root {
+  width: 400px;
+  padding: 50px;
+  border: 1px solid #dedede;
+  margin: 50px auto;
+}
+
+.header{
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 30px !important;
+}
+
+.header a{
+  color: #1565c0;
+  margin-left: 300px;
+  position: absolute;
+  justify-content: flex-end;
+}
+
+.field {
+  margin-bottom: 20px !important;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bold !important;
+}

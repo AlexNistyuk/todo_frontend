@@ -1,0 +1,15 @@
+.progressBar{
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(128,128,128,.5);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+}
+
+.progressBarLine{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+}

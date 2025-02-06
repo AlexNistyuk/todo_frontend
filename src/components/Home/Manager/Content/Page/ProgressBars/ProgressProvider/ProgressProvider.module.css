@@ -1,0 +1,10 @@
+.circularBar{
+    width: 200px;
+}
+
+.progressBarText{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    color: #159284;
+}

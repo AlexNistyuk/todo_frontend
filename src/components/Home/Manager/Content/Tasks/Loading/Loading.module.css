@@ -1,0 +1,22 @@
+.tasks{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.taskSkeletonContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    margin-top: -50px;
+}
+
+.row{
+    max-width: 320px;
+    max-height: 200px;
+    display: flex;
+    gap: 80px;
+}

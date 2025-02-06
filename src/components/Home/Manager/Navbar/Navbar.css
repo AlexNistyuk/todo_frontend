@@ -1,0 +1,8 @@
+.navigation{
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    gap: 15px;
+    padding-top: 15px;
+    align-items: center;
+}
